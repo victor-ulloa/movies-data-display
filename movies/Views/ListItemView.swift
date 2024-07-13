@@ -19,6 +19,7 @@ struct ListItemView: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
             } placeholder: {
                 ProgressView()
                     .frame(width: 60)
