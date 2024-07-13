@@ -11,16 +11,16 @@ import SwiftData
 @Model
 final class Movie: Codable {
     
+    @Attribute(.unique) var movieID: Int
+    var title: String
     var actors: String
     var criticsRating: Double
     var directors: String
     var genres: String
     var length: Int
-    var movieID: Int
     var mpaRating: String
     var shortDescription: String
     var studio: String
-    var title: String
     var writers: String
     var year: String
     

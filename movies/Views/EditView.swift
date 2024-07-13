@@ -25,7 +25,7 @@ struct EditView: View {
     @State var shortDescription: String = ""
     @State var studio: String = ""
     @State var title: String = ""
-    @State var writer: String = ""
+    @State var writers: String = ""
     @State var year: String = ""
     
     var body: some View {
@@ -36,7 +36,7 @@ struct EditView: View {
             
             Section("Cast and Crew") {
                 TextField("Directors", text: $directors)
-                TextField("Writer", text: $writer)
+                TextField("Writers", text: $writers)
                 TextField("Actors", text: $actors)
             }
             
@@ -67,7 +67,7 @@ struct EditView: View {
                         shortDescription: shortDescription,
                         studio: studio,
                         title: title,
-                        writers: writer,
+                        writers: writers,
                         year: year
                     )
                     modelContext.insert(newMovie)

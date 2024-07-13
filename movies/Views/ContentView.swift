@@ -20,7 +20,7 @@ struct ContentView: View {
             List {
                 ForEach(movies.sorted(by: { $0.title < $1.title })) { item in
                     NavigationLink {
-                        Text("Item at \(item.title)")
+                        DetailView(movie: item)
                     } label: {
                         ListItemView(title: item.title, studio: item.studio, rating: item.criticsRating)
                     }
