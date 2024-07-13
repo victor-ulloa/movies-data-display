@@ -41,7 +41,8 @@ struct ContentView: View {
             }
             .navigationTitle("Movies")
             .sheet(isPresented: $shouldPresentSheet) {
-                Text("TEST")
+                EditView(isNew: true)
+                    .presentationDragIndicator(.visible)
             }
         } detail: {
             Text("Select an item")
