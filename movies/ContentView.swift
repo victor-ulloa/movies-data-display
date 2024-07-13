@@ -10,16 +10,17 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query private var movies: [Movie]
+
 
     var body: some View {
         NavigationSplitView {
             List {
-                ForEach(items) { item in
+                ForEach(movies) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        Text("Item at \(item.title)")
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        Text(item.title)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -37,25 +38,48 @@ struct ContentView: View {
         } detail: {
             Text("Select an item")
         }
+        .onAppear {
+            if movies.isEmpty {
+                loadData()
+            }
+        }
     }
 
     private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
+//        withAnimation {
+//            let newItem = Item(timestamp: Date())
+//            modelContext.insert(newItem)
+//        }
     }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(items[index])
+                modelContext.delete(movies[index])
             }
+        }
+    }
+    
+    
+    private func loadData() {
+        do {
+            guard let url = Bundle.main.url(forResource: "movies", withExtension: "json") else {
+                fatalError("Failed to find movies.json")
+            }
+
+            let data = try Data(contentsOf: url)
+            let movies = try JSONDecoder().decode([Movie].self, from: data)
+
+            for movie in movies {
+                modelContext.insert(movie)
+            }
+        } catch {
+            print("Failed to load movies.")
         }
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Movie.self, inMemory: true)
 }

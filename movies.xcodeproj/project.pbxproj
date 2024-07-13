@@ -11,7 +11,6 @@
 		57722B102C42032F00F09418 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57722B0F2C42032F00F09418 /* Movie.swift */; };
 		5790C3972C41DF05006BC737 /* moviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790C3962C41DF05006BC737 /* moviesApp.swift */; };
 		5790C3992C41DF05006BC737 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790C3982C41DF05006BC737 /* ContentView.swift */; };
-		5790C39B2C41DF05006BC737 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790C39A2C41DF05006BC737 /* Item.swift */; };
 		5790C39D2C41DF06006BC737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5790C39C2C41DF06006BC737 /* Assets.xcassets */; };
 		5790C3A02C41DF06006BC737 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5790C39F2C41DF06006BC737 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -22,7 +21,6 @@
 		5790C3932C41DF05006BC737 /* movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790C3962C41DF05006BC737 /* moviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moviesApp.swift; sourceTree = "<group>"; };
 		5790C3982C41DF05006BC737 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		5790C39A2C41DF05006BC737 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		5790C39C2C41DF06006BC737 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5790C39F2C41DF06006BC737 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,7 +72,6 @@
 			isa = PBXGroup;
 			children = (
 				5790C3982C41DF05006BC737 /* ContentView.swift */,
-				5790C39A2C41DF05006BC737 /* Item.swift */,
 				5790C3962C41DF05006BC737 /* moviesApp.swift */,
 				5790C39C2C41DF06006BC737 /* Assets.xcassets */,
 				57722B0C2C42011800F09418 /* Data */,
@@ -164,7 +161,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5790C3992C41DF05006BC737 /* ContentView.swift in Sources */,
-				5790C39B2C41DF05006BC737 /* Item.swift in Sources */,
 				57722B102C42032F00F09418 /* Movie.swift in Sources */,
 				5790C3972C41DF05006BC737 /* moviesApp.swift in Sources */,
 			);
