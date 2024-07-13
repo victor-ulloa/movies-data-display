@@ -21,6 +21,7 @@ struct ListItemView: View {
                     .aspectRatio(contentMode: .fit)
             } placeholder: {
                 ProgressView()
+                    .frame(width: 60)
             }
             .frame(height: 60)
             

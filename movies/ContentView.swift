@@ -9,8 +9,10 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    
     @Environment(\.modelContext) private var modelContext
     @Query private var movies: [Movie]
+    @State var shouldPresentSheet = false
 
 
     var body: some View {
@@ -30,12 +32,17 @@ struct ContentView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button {
+                        shouldPresentSheet.toggle()
+                    } label: {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
             .navigationTitle("Movies")
+            .sheet(isPresented: $shouldPresentSheet) {
+                Text("TEST")
+            }
         } detail: {
             Text("Select an item")
         }
