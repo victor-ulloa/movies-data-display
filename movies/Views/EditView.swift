@@ -6,20 +6,23 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct EditView: View {
     
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) var modelContext
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.dismiss) var dismiss
+    
+    @Query var movies: [Movie]
     
     @State var isNew: Bool = false
+    var id: Int = 0
     
     @State var actors: String = ""
     @State var criticsRating: String = ""
     @State var directors: String = ""
     @State var genres: String = ""
-    @State var lenght: String = ""
+    @State var length: String = ""
     @State var movieID: String = ""
     @State var mpaRating: String = ""
     @State var shortDescription: String = ""
@@ -27,6 +30,15 @@ struct EditView: View {
     @State var title: String = ""
     @State var writers: String = ""
     @State var year: String = ""
+    
+    init(id: Int) {
+        self.id = id
+    }
+    
+    init(isNew: Bool, movieId: String) {
+        self.isNew = isNew
+        self.movieID = movieId
+    }
     
     var body: some View {
         Form {
@@ -47,7 +59,7 @@ struct EditView: View {
             }
             
             Section("Details") {
-                TextField("Length", text: $lenght)
+                TextField("Length", text: $length)
                     .keyboardType(.numberPad)
                 TextField("Studio", text: $studio)
                 TextField("Short Description", text: $shortDescription,  axis: .vertical)
@@ -61,7 +73,7 @@ struct EditView: View {
                         criticsRating: Double(criticsRating) ?? 0,
                         directors: directors,
                         genres: genres,
-                        length: Int(lenght) ?? 0,
+                        length: Int(length) ?? 0,
                         movieID: Int(movieID) ?? 0,
                         mpaRating: mpaRating,
                         shortDescription: shortDescription,
@@ -73,16 +85,47 @@ struct EditView: View {
                     modelContext.insert(newMovie)
                     presentationMode.wrappedValue.dismiss()
                 } else {
-                    dismiss()
+                    if let movie = movies.first(where: { $0.movieID == id }) {
+                        movie.actors = actors
+                        movie.criticsRating = Double(criticsRating) ?? 0
+                        movie.directors = directors
+                        movie.length = Int(length) ?? 0
+                        movie.mpaRating = mpaRating
+                        movie.shortDescription = shortDescription
+                        movie.studio = studio
+                        movie.title = title
+                        movie.writers = writers
+                        movie.year = year
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }
             } label: {
                 Text("Save")
             }
             
         }
+        .onAppear {
+            print(movies.first(where: { $0.movieID == id })?.title)
+            print(id)
+            
+            if !isNew, let movie = movies.first(where: { $0.movieID == id }) {
+                self.actors = movie.actors
+                self.criticsRating = "\(movie.criticsRating)"
+                self.directors = movie.directors
+                self.genres = movie.genres
+                self.length = "\(movie.length)"
+                self.mpaRating = movie.mpaRating
+                self.shortDescription = movie.shortDescription
+                self.studio = movie.studio
+                self.title = movie.title
+                self.writers = movie.writers
+                self.year = movie.year
+            }
+        }
     }
 }
 
 #Preview {
-    EditView(isNew: true)
+    EditView(id: 10)
+        .modelContainer(for: [Movie.self])
 }

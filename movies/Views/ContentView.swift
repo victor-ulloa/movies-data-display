@@ -10,7 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) var modelContext
     @Query private var movies: [Movie]
     @State var shouldPresentSheet = false
 
@@ -41,8 +41,9 @@ struct ContentView: View {
             }
             .navigationTitle("Movies")
             .sheet(isPresented: $shouldPresentSheet) {
-                EditView(isNew: true, movieID: "\(movies.count)")
+                EditView(isNew: true, movieId: "\(movies.count)")
                     .presentationDragIndicator(.visible)
+                    .modelContext(modelContext)
             }
         } detail: {
             Text("Select an item")

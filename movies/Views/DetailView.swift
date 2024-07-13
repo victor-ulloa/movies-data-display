@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     
+    @Environment(\.modelContext) var modelContext
     @State var shouldPresentSheet = false
     
     var movie: Movie
@@ -50,21 +51,9 @@ struct DetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $shouldPresentSheet) {
-            EditView(
-                actors: movie.actors,
-                criticsRating: "\(movie.criticsRating)",
-                directors: movie.directors,
-                genres: movie.genres,
-                lenght: "\(movie.length)",
-                movieID: "\(movie.movieID)",
-                mpaRating: movie.mpaRating,
-                shortDescription: movie.shortDescription,
-                studio: movie.studio,
-                title: movie.title,
-                writers: movie.writers,
-                year: movie.year
-            )
-            .presentationDragIndicator(.visible)
+            EditView(id: movie.movieID)
+                .presentationDragIndicator(.visible)
+                .modelContext(modelContext)
         }
     }
 }
