@@ -18,7 +18,7 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             List {
-                ForEach(movies) { item in
+                ForEach(movies.sorted(by: { $0.title < $1.title })) { item in
                     NavigationLink {
                         Text("Item at \(item.title)")
                     } label: {
@@ -41,7 +41,7 @@ struct ContentView: View {
             }
             .navigationTitle("Movies")
             .sheet(isPresented: $shouldPresentSheet) {
-                EditView(isNew: true)
+                EditView(isNew: true, movieID: "\(movies.count)")
                     .presentationDragIndicator(.visible)
             }
         } detail: {
@@ -52,13 +52,6 @@ struct ContentView: View {
                 loadData()
             }
         }
-    }
-
-    private func addItem() {
-//        withAnimation {
-//            let newItem = Item(timestamp: Date())
-//            modelContext.insert(newItem)
-//        }
     }
 
     private func deleteItems(offsets: IndexSet) {

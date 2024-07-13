@@ -9,6 +9,10 @@ import SwiftUI
 
 struct EditView: View {
     
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
+    
     @State var isNew: Bool = false
     
     @State var actors: String = ""
@@ -48,6 +52,31 @@ struct EditView: View {
                 TextField("Studio", text: $studio)
                 TextField("Short Description", text: $shortDescription,  axis: .vertical)
                     .lineLimit(5...10)
+            }
+            
+            Button {
+                if isNew {
+                    let newMovie = Movie(
+                        actors: actors,
+                        criticsRating: Double(criticsRating) ?? 0,
+                        directors: directors,
+                        genres: genres,
+                        length: Int(lenght) ?? 0,
+                        movieID: Int(movieID) ?? 0,
+                        mpaRating: mpaRating,
+                        shortDescription: shortDescription,
+                        studio: studio,
+                        title: title,
+                        writers: writer,
+                        year: year
+                    )
+                    modelContext.insert(newMovie)
+                    presentationMode.wrappedValue.dismiss()
+                } else {
+                    dismiss()
+                }
+            } label: {
+                Text("Save")
             }
             
         }
