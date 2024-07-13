@@ -20,7 +20,7 @@ struct ContentView: View {
                     NavigationLink {
                         Text("Item at \(item.title)")
                     } label: {
-                        Text(item.title)
+                        ListItemView(title: item.title, studio: item.studio, rating: item.criticsRating)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -35,6 +35,7 @@ struct ContentView: View {
                     }
                 }
             }
+            .navigationTitle("Movies")
         } detail: {
             Text("Select an item")
         }

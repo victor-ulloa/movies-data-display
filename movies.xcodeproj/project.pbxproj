@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		57722B0E2C42013300F09418 /* movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 57722B0D2C42013300F09418 /* movies.json */; };
 		57722B102C42032F00F09418 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57722B0F2C42032F00F09418 /* Movie.swift */; };
+		57722B132C42107A00F09418 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57722B122C42107A00F09418 /* ListItemView.swift */; };
 		5790C3972C41DF05006BC737 /* moviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790C3962C41DF05006BC737 /* moviesApp.swift */; };
 		5790C3992C41DF05006BC737 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790C3982C41DF05006BC737 /* ContentView.swift */; };
 		5790C39D2C41DF06006BC737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5790C39C2C41DF06006BC737 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		57722B0D2C42013300F09418 /* movies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = movies.json; sourceTree = "<group>"; };
 		57722B0F2C42032F00F09418 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		57722B122C42107A00F09418 /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 		5790C3932C41DF05006BC737 /* movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790C3962C41DF05006BC737 /* moviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moviesApp.swift; sourceTree = "<group>"; };
 		5790C3982C41DF05006BC737 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				57722B0C2C42011800F09418 /* Data */,
 				57722B112C42033500F09418 /* Models */,
 				5790C39E2C41DF06006BC737 /* Preview Content */,
+				57722B122C42107A00F09418 /* ListItemView.swift */,
 			);
 			path = movies;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 				5790C3992C41DF05006BC737 /* ContentView.swift in Sources */,
 				57722B102C42032F00F09418 /* Movie.swift in Sources */,
 				5790C3972C41DF05006BC737 /* moviesApp.swift in Sources */,
+				57722B132C42107A00F09418 /* ListItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
