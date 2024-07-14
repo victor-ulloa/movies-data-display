@@ -15,7 +15,7 @@ struct EditView: View {
     
     @Query var movies: [Movie]
     
-    @State var isNew: Bool = false
+    var isNew: Bool = false
     var id: Int = 0
     
     @State var actors: String = ""
@@ -105,9 +105,6 @@ struct EditView: View {
             
         }
         .onAppear {
-            print(movies.first(where: { $0.movieID == id })?.title)
-            print(id)
-            
             if !isNew, let movie = movies.first(where: { $0.movieID == id }) {
                 self.actors = movie.actors
                 self.criticsRating = "\(movie.criticsRating)"

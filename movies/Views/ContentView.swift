@@ -13,8 +13,8 @@ struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @Query private var movies: [Movie]
     @State var shouldPresentSheet = false
-
-
+    
+    
     var body: some View {
         NavigationSplitView {
             List {
@@ -41,7 +41,7 @@ struct ContentView: View {
             }
             .navigationTitle("Movies")
             .sheet(isPresented: $shouldPresentSheet) {
-                EditView(isNew: true, movieId: "\(movies.count)")
+                EditView(isNew: true, movieId: "\(movies.count + 1)")
                     .presentationDragIndicator(.visible)
                     .modelContext(modelContext)
             }
@@ -54,11 +54,17 @@ struct ContentView: View {
             }
         }
     }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(movies[index])
+                modelContext.delete(movies.sorted(by: { $0.title < $1.title })[index])
+            }
+            
+            do {
+                try modelContext.save()
+            } catch {
+                print("Failed to save context after deletion: \(error)")
             }
         }
     }
@@ -69,10 +75,10 @@ struct ContentView: View {
             guard let url = Bundle.main.url(forResource: "movies", withExtension: "json") else {
                 fatalError("Failed to find movies.json")
             }
-
+            
             let data = try Data(contentsOf: url)
             let movies = try JSONDecoder().decode([Movie].self, from: data)
-
+            
             for movie in movies {
                 modelContext.insert(movie)
             }
